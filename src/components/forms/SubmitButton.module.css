@@ -1,0 +1,16 @@
+.btn {
+  background-color: #6B64FF;
+  color: #fff;
+  padding: 12px 13px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  border-radius: 9px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* sombra suave padrão */
+}
+
+.btn:hover {
+  background-color: #5953e5; /* tom um pouco mais escuro no hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* sombra mais destacada no hover */
+}

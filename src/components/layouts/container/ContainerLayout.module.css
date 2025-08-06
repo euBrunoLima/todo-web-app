@@ -1,0 +1,6 @@
+.container{
+    width: 100%;
+    min-height: 100dvh;
+    padding: 1.5rem 1rem;
+    border: 2px solid black;
+}

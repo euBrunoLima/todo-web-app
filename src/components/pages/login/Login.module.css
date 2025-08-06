@@ -1,0 +1,49 @@
+.login_container{
+    height: 100dvh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 24% 1.2rem 0rem 1.2rem;
+    gap: 3.5rem;
+}
+
+.login_header{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+}
+
+.login_container .login_header h1{
+    font-size: 1.9rem;
+    font-weight: 700;
+
+}
+.login_container .login_header p{
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    /* margin-bottom: 4rem; */
+}
+.login_container .login_header p > span{
+    font-size: 1.8rem;
+}
+
+.inputs_container{
+    display: flex;
+    flex-direction: column;
+}
+.inputs_container > a{
+    align-self: flex-end;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 0.9rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+

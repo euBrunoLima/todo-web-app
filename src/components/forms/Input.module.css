@@ -1,0 +1,41 @@
+.form_control{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_control label{
+    margin-bottom: .6em;
+    font-weight: bold;
+}
+
+.form_control input {
+  width: 100%;
+  padding: 13px 16px;
+  margin-bottom: 0.8rem;
+  border: 1.5px solid #c5c5c5;
+  border-radius: 6px;      /* Bordas arredondadas */
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background-color: white;
+}
+
+.form_control input:focus {
+  border-color: #888; /* Cor da borda ao focar */
+}
+
+.form_control input::placeholder{
+    color: #7b7b7b;
+    font-weight: 600;
+}
+
+.visually_hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
