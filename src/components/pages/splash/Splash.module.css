@@ -20,14 +20,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100dvh - 3.2rem);
+  height: 100dvh;
   width: 100%;
 }
 
 .logo_container > img {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 16px;
-  animation: bounceIn 1.5s ease forwards;
+  animation: bounceIn .6s ease forwards;
 }

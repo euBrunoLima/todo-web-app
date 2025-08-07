@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import img from './my_task_logo.png';
+import img from './img_logo.png';
 import styles from '../splash/Splash.module.css';
 
 function Splash() {
