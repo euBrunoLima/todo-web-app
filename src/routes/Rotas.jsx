@@ -5,6 +5,7 @@ import Presentation from '../components/pages/presentation/Presentation';
 import Register from '../components/pages/register/Register';
 import ForgotPassword from '../components/pages/forgot_password/ForgotPassword';
 import EmailSent from '../components/pages/email_sent/EmailSent';
+import Taks from '../components/pages/tasks/Tasks';
 
 function Rotas() {
   return (
@@ -16,7 +17,7 @@ function Rotas() {
           <Route path='/register' element={<Register />} />
           <Route path='/forgot_password' element={<ForgotPassword />} />
           <Route path='/email_sent' element={<EmailSent />} />
-
+          <Route path='/tasks' element={<Taks />} />
 
         </Routes>
     </Router>
