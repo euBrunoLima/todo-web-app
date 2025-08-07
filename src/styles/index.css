@@ -24,8 +24,14 @@ body {
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+div::-webkit-scrollbar{
   display: none;             /* Chrome, Safari e Opera */
+}
+
+div{
+  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 
 /* Links */
@@ -53,7 +59,10 @@ textarea {
   border: none;
   background: none;
 }
-
+form{
+    display: flex;
+    flex-direction: column;
+}
 /* Cabeçalhos */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
