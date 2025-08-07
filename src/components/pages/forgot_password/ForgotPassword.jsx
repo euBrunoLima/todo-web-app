@@ -44,7 +44,7 @@ function ForgotPassword(){
                         name="email"
                         placeholder="Digite seu email"
                         handleOnChange={handleChange}
-                        // value={}
+                        value={email ? email : ''}
                     />
                     
                     <SubmitButton text="Enviar"/>
