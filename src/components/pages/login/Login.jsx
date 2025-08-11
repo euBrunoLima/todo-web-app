@@ -3,6 +3,7 @@ import Input from '../../forms/Input';
 import SubmitButton from '../../forms/SubmitButton';
 import { loginUser } from '../../../services/api/userService';
 import Message from '../../layouts/message/Message';
+import Loading from '../../layouts/loading/Loading';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -14,10 +15,10 @@ function Login(){
     })
     const [message, setMessage] = useState("");
     const clear = () =>{
-        login.email = ''
-        login.password = ''
+        setLogin({email: '', password: ''})
     }
     const [token, setToken] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const handleChange = (e) =>{
         const {name, value} = e.target;
@@ -28,6 +29,7 @@ function Login(){
     }
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        setLoading(true)
         
         try {
             const response = await loginUser(login);
@@ -52,6 +54,8 @@ function Login(){
             setTimeout(() => {
                 setMessage('')
             }, 2000);
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -63,6 +67,7 @@ function Login(){
     return(
         <div className={styles.login_container}>
             {message && <Message type="success" msg={message}/>}
+            {loading && <Loading/>}
             <div className={styles.login_header}>
                 <h1>Vamos fazer seu <br />login 👋</h1>
                 <p>Seja bem vindo<br/> Nós sentimos sua falta</p>
@@ -89,7 +94,7 @@ function Login(){
                     <Link to="/forgot_password">Esqueceu a senha?</Link>
                 </div>
 
-                <SubmitButton text="Entrar"/>
+                <SubmitButton text="Entrar" disabled={loading}/>
             </form>
 
             <span>Não tem conta ?<Link to={'/register'}>Registre-se</Link></span>
