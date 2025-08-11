@@ -1,0 +1,28 @@
+.category_tabs {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.tab {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  background-color: #e8ebff; /* cor clara para não selecionado */
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab.active {
+  background-color: #6c63ff; /* roxo escolhido */
+  color: white;
+}
+
+.tab:hover:not(.active) {
+  background-color: #d6d4ff; /* roxo bem clarinho no hover */
+}
