@@ -11,10 +11,12 @@
 
 html, body, #root{
   height: 100dvh;
+  overflow: hidden;
 }
 #root{
   max-width: 450px;
   margin: 0 auto;
+  /* border: 2px solid; */
 }
 
 body {
