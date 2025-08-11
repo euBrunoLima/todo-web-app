@@ -31,30 +31,30 @@ export async function registerUser(userData) {
   }
 }
 
-export async function loginUser(userData) {
-    try {
-        const response = await fetch(`${API_URL}login`,{
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
+  export async function loginUser(userData) {
+      try {
+          const response = await fetch(`${API_URL}login`,{
+              method: 'POST',
+              headers:{
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(userData)
+          })
 
-        let data;
+          let data;
 
-        try {
-            data = await response.json();
-        } catch (jsonError) {
-            data = null;   
-        }
+          try {
+              data = await response.json();
+          } catch (jsonError) {
+              data = null;   
+          }
 
-        if (!response.ok) {
-            throw new Error(data?.mensagem || 'Erro ao fazer login');
-        }
+          if (!response.ok) {
+              throw new Error(data?.mensagem || 'Erro ao fazer login');
+          }
 
-        return data;
-    } catch (error) {
-        throw error
-    }
-}
+          return data;
+      } catch (error) {
+          throw error
+      }
+  }
