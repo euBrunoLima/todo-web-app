@@ -1,7 +1,7 @@
 import styles from './TaskCard.module.css';
 import { useEffect, useState } from 'react';
 
-function TaskCard({id, name, initialStatus, deadlineDate, deadlineTime, onStatusChange, onMarkClick}) {
+function TaskCard({id, name, initialStatus, deadlineDate, deadlineTime, onStatusChange}) {
     const [status, setStatus] = useState(initialStatus);
 
     const handleStatus = () => {
@@ -28,10 +28,10 @@ function TaskCard({id, name, initialStatus, deadlineDate, deadlineTime, onStatus
             </div>
 
             <div className={styles.texts}>
-                <h3>{name}</h3>
+                <h3>{name ? name : ''}</h3>
                 <div className={styles.prazo}>
-                    <span>{deadlineDate}</span>
-                    <span>{deadlineTime}</span>
+                    <span>{deadlineDate ? deadlineDate : ''}</span>
+                    <span>{deadlineTime ? deadlineTime : ''}</span>
                 </div>
             </div>
         </div>

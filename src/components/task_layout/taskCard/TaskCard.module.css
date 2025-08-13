@@ -109,11 +109,13 @@
     display: flex;
     gap: 5px;
     font-size: 0.8rem;
+    color: rgba(10, 9, 24, 0.745);
+
 }
 
 .card_container > .texts > h3 {
     font-size: 1rem;
     margin-bottom: 3px;
     font-weight: 500;
-    color: #0a0918;
+    color: rgba(10, 9, 24, 0.745);
 }
