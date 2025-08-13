@@ -9,25 +9,67 @@ import TaksList from '../components/pages/tasks/TaskList';
 import Dashboard from '../components/pages/dashboard/Dashboard';
 import Calendar from '../components/pages/calendar/Calendar';
 import Perfil from '../components/pages/perfil/Perfil';
+import PrivateRoute from '../routes/PrivateRoutes.jsx'
+import PublicRoute from '../routes/PublicRoute.jsx'; // novo import
 
 function Rotas() {
   return (
     <Router>
-        <Routes>
-          <Route path='/' element={<Splash />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/presentation' element={<Presentation />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/forgot_password' element={<ForgotPassword />} />
-          <Route path='/email_sent' element={<EmailSent />} />
-          <Route path='/tasks' element={<TaksList />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/calendar' element={<Calendar />} />
-          <Route path='/perfil' element={<Perfil />} />
-        </Routes>
+      <Routes>
+        {/* Rota pública livre */}
+        <Route path='/' element={<Splash />} />
+
+        {/* Rotas públicas que bloqueiam se logado */}
+        <Route path='/login' element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        } />
+        <Route path='/presentation' element={
+          <PublicRoute>
+            <Presentation />
+          </PublicRoute>
+        } />
+        <Route path='/register' element={
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        } />
+        <Route path='/forgot_password' element={
+          <PublicRoute>
+            <ForgotPassword />
+          </PublicRoute>
+        } />
+        <Route path='/email_sent' element={
+          <PublicRoute>
+            <EmailSent />
+          </PublicRoute>
+        } />
+
+        {/* Rotas privadas */}
+        <Route path='/tasks' element={
+          <PrivateRoute>
+            <TaksList />
+          </PrivateRoute>
+        } />
+        <Route path='/dashboard' element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        } />
+        <Route path='/calendar' element={
+          <PrivateRoute>
+            <Calendar />
+          </PrivateRoute>
+        } />
+        <Route path='/perfil' element={
+          <PrivateRoute>
+            <Perfil />
+          </PrivateRoute>
+        } />
+      </Routes>
     </Router>
   );
 }
-
 
 export default Rotas;
