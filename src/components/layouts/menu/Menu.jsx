@@ -1,8 +1,8 @@
 import styles from './Menu.module.css';
-import img3 from '../../../../public/imgs/dashboard.png';
-import img1 from '../../../../public/imgs/check.png';
-import img2 from '../../../../public/imgs/calendar.png';
-import img4 from '../../../../public/imgs/menu.png';
+import img3 from '../../../imgs/dashboard.png';
+import img1 from '../../../imgs/check.png';
+import img2 from '../../../imgs/calendar.png';
+import img4 from '../../../imgs/menu.png';
 import { NavLink } from 'react-router-dom';
 
 function Menu(){
