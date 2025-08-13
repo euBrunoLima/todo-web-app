@@ -4,8 +4,9 @@ import SubmitButton from '../../forms/SubmitButton';
 import { loginUser } from '../../../services/api/userService';
 import Message from '../../layouts/message/Message';
 import Loading from '../../layouts/loading/Loading';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthContext';
 
 
 function Login(){
@@ -27,6 +28,8 @@ function Login(){
             [name]: value
         })
     }
+    const { login_context } = useContext(AuthContext);
+
     const handleSubmit = async (e) =>{
         e.preventDefault();
         setLoading(true)
@@ -34,10 +37,7 @@ function Login(){
         try {
             const response = await loginUser(login);
             setMessage(response.mensagem);
-            setToken(response.token);
-            
-            localStorage.setItem('token', response.token);
-            setMessage(response.mensagem)
+            login_context(response.token, response.usuario); // usar a função do context para salvar o token e dados do user
 
             //colocar uma futura img/svg de carregamento por causa do delay
 
@@ -45,9 +45,8 @@ function Login(){
                 clear();
                 setMessage('')
                 navigate('/tasks')
-            }, 2000);
+            }, 500);
 
-            console.log('usuario logado', response)
         } catch (error) {
             console.error('Erro ao fazer login', error.message)
             setMessage(error.message) 
