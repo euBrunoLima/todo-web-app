@@ -1,10 +1,12 @@
-import Rotas from "./routes/Rotas"
-
-
+import Rotas from "./routes/Rotas";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 function App() {
-
-  return <Rotas/>
+  return (
+    <AuthProvider>
+      <Rotas />
+    </AuthProvider>
+  )
   
 }
 
