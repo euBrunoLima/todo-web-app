@@ -39,7 +39,7 @@
 }
 
 .conteudo > header .header_texts h1{
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 1.2;
     color: #2E3A59;
     font-weight: 650;
@@ -73,9 +73,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
+    min-height: 40dvh;
 }
-
 
 .task_container > .menu_inferior{
     display: flex;
@@ -89,5 +88,4 @@
     background-color: #6b64ff;
     position: absolute;
     bottom: 0;
-    /* z-index: -2; */   
 }
