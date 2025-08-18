@@ -9,6 +9,7 @@
 .task_container > .conteudo{
     display: flex;
     flex-direction: column;
+    position: relative;
     padding: 2rem 1.2rem 1.5rem 1.2rem;
     height: 91dvh;
     overflow-y: scroll;
@@ -75,6 +76,33 @@
     gap: 10px;
     min-height: 40dvh;
 }
+
+/* .conteudo > .btnAdd{
+    position: sticky;
+    bottom: 20px;
+
+    background-color: #6b64ff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    flex-shrink: 0;
+
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+.conteudo > .btnAdd span {
+    position: relative;
+    top: -3.5px; 
+} */
+
 
 .task_container > .menu_inferior{
     display: flex;

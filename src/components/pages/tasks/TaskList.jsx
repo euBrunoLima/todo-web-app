@@ -8,6 +8,7 @@ import styles from './TaskList.module.css';
 import CategoryTabs from "../../task_layout/categories/Categories";
 import imgPerfil from '../../../imgs/perfil.png';
 import WithoutTask from "../../task_layout/without_task/WithoutTask.jsx";
+import AddTask from "../../task_layout/addTask/AddTask.jsx";
 
 import { fetchUserCategories } from "../../../services/api/categoryServer.js";
 import { fetchUserTasks } from "../../../services/api/taskService.js";
@@ -20,6 +21,7 @@ function TaskList() {
 
   const [categories, setCategories] = useState([]);
   const [tasks, setTasks] = useState([]); // Aqui você deve buscar ou armazenar as tasks
+  const [allTasks, setAllTasks] = useState([]); // Mantém todas as tarefas para filtragem
   const [loadingCategories, setLoadingCategories] = useState(true);
 
   const nameCompleto = user?.nome || "Amigo";
@@ -30,10 +32,12 @@ function TaskList() {
 
     fetchUserCategories(token)
       .then(data => {
-        const orderedCategories = data.todas_categorias.sort((a,b) => a.id - b.id);
-        setCategories(
-          {id: 0, name: "Todas", color: "#000000"},
-          orderedCategories || []);
+        const newCategories = [
+          {id: 0, name: "Tudo", user_id: null},
+          ...data.todas_categorias
+        ]
+        const orderedCategories = newCategories.sort((a,b) => a.id - b.id);
+        setCategories(orderedCategories || []);
       })
       .catch(err => {
         console.error("Erro ao buscar categorias:", err);
@@ -48,7 +52,7 @@ function TaskList() {
     if (!token) return;
     fetchUserTasks(token)
     .then((data) =>{
-      // const orderedTasks = data.tarefas.sort((a, b) => new Date(a.deadlineDate) - new Date(b.deadlineDate));
+      setAllTasks(data.dados || []);
       setTasks(data.dados || []);
     })
     .catch((err) => {
@@ -58,12 +62,16 @@ function TaskList() {
     
   }, [token]);
 
-
-  // Função para selecionar categoria - você pode filtrar as tasks aqui
   const handleCategorySelect = (category) => {
     console.log("Categoria selecionada:", category);
-    setTasks(tasks.filter(tas => tas.categoryId === category.id));
+    if (category.id === 0){
+      setTasks(allTasks);
+    }else{
+      setTasks(allTasks.filter(task => task.category_id == category.id));
+    }
   };
+
+   
 
   return (
     <div className={styles.task_container}>
@@ -101,7 +109,7 @@ function TaskList() {
                   key={task.id}
                   id={task.id}
                   name={task.title}
-                  initialStatus={task.id}
+                  initialStatus={task.status}
                   deadlineDate={task.deadlineDate}
                   deadlineTime={task.deadlineTime}
                   onStatusChange={(id, newStatus) => {
@@ -109,15 +117,18 @@ function TaskList() {
                     console.log(task.id, task.title, newStatus, task.deadlineDate, task.deadlineTime)
                     );
                     // Aqui você pode chamar uma função para atualizar o status da tarefa no servidor, se necessário
-                  }}
-                  // passe outras props necessárias para o TaskCard
+                  }}  
                 />
+                
               ))
-            )}
+               
+            )}    
           </div>
         </div>
-      </div>
 
+        <AddTask />
+        
+      </div>
       <div className={styles.menu_inferior}>
         <Menu />
       </div>
