@@ -31,7 +31,7 @@ export async function registerUser(userData) {
   }
 }
 
-  export async function loginUser(userData) {
+export async function loginUser(userData) {
       try {
           const response = await fetch(`${API_URL}login`,{
               method: 'POST',
@@ -57,4 +57,4 @@ export async function registerUser(userData) {
       } catch (error) {
           throw error
       }
-  }
+}
