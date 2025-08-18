@@ -20,6 +20,7 @@ html, body, #root{
 }
 
 body {
+  background-color: #f8f8f8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scrollbar-width: none;     /* Firefox */
