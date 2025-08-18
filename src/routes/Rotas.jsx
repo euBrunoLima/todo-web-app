@@ -11,6 +11,9 @@ import Calendar from '../components/pages/calendar/Calendar';
 import Perfil from '../components/pages/perfil/Perfil';
 import PrivateRoute from '../routes/PrivateRoutes.jsx'
 import PublicRoute from '../routes/PublicRoute.jsx'; // novo import
+import NewTask from '../components/pages/new_task/NewTask.jsx';
+import EditTask from '../components/pages/edit_task/EditTask.jsx';
+import { useParams } from 'react-router-dom';
 
 function Rotas() {
   return (
@@ -65,6 +68,16 @@ function Rotas() {
         <Route path='/perfil' element={
           <PrivateRoute>
             <Perfil />
+          </PrivateRoute>
+        } />
+        <Route path='/new_task' element={
+          <PrivateRoute>
+            <NewTask />
+          </PrivateRoute>
+        } />
+        <Route path='/edit_task/:id' element={
+          <PrivateRoute>
+            <EditTask />
           </PrivateRoute>
         } />
       </Routes>
