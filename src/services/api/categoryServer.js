@@ -1,7 +1,7 @@
-
+const API_URL = 'http://localhost/api/';
 export async function fetchUserCategories(token) {
   try {
-    const response = await fetch('http://localhost:3000/api/categories/', {
+    const response = await fetch(`${API_URL}categories`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`, // token no header
@@ -26,3 +26,4 @@ export async function fetchUserCategories(token) {
     throw error;  // propaga o erro para o componente tratar
   }
 }
+
