@@ -18,7 +18,6 @@ function Login(){
     const clear = () =>{
         setLogin({email: '', password: ''})
     }
-    const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const handleChange = (e) =>{
