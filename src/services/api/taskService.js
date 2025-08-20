@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:3000/api/';
+const rede =  'localhost'
+const API_URL = `http://${rede}:3000/api/`;
 
 export async function fetchUserTasks(token) {
   try {
@@ -55,7 +56,6 @@ export async function createTask(taskData, token) {
     throw error; // propaga o erro para o componente tratar
   }
 }
-
 export async function getTaskById(id, token) {
   try {
     const response = await fetch(`${API_URL}tasks/${id}/show`, {
@@ -81,3 +81,32 @@ export async function getTaskById(id, token) {
   }
 
 }
+export async function updateTask(id, taskData, token) {
+  try {
+    const response = await fetch(`${API_URL}tasks/update/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${token}`, // token no header
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(taskData)
+    });
+
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      data = null;
+    }
+
+    if (!response.ok) {
+      throw new Error(data?.mensagem || 'Erro ao atualizar tarefa');
+    }
+
+    return data; // retorna objeto com mensagem e dados da atualização
+
+  } catch (error) {
+    throw error; // propaga o erro para o componente tratar
+  }
+}
+
