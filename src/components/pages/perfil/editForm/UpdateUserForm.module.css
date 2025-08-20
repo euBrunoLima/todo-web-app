@@ -1,0 +1,49 @@
+.form_container {
+  max-width: 400px;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  margin-top: 1.4rem;
+}
+
+
+.form_container form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form_container  label {
+  font-weight: bold;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.form_container  input {
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.form_container  input:focus {
+  border-color: #4b44d4;
+  box-shadow: 0 0 6px rgba(107, 100, 255, 0.5);
+}
+
+.form_container  button {
+  background: #6b64ff;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 1rem
+}
+
+.form_container button:hover {
+  background: #5750d4;
+}
