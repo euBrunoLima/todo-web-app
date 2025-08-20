@@ -1,17 +1,17 @@
 .select {
     min-width: 30%;
-    max-width: 135px;
+    max-width: 140px;
     padding: 7px 12px;
-    border-radius: 12px;
+    border-radius: 6px;
     font-size: 14px;
-    background-color: rgba(234, 234, 243, 0.432);
+    font-weight: 600;
+    background-color: #6861fc;
     outline: none;
     transition: border-color 0.3s ease;
     appearance: none; 
     cursor: pointer;
     margin-bottom: 0.8rem;
-    color: #2E3A59;
-    /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); */
+    color: #fff;
 }
 
 .select:focus {
