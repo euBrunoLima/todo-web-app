@@ -3,7 +3,7 @@ import styles from './SelectCategory.module.css';
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { fetchUserCategories } from '../../services/api/categoryServer';
 
-function SelectCategory({ onChange }) {
+function SelectCategory({ onChange, defaultCategoryId }) {
     const { token } = useContext(AuthContext);
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,7 +17,10 @@ function SelectCategory({ onChange }) {
                 const allCategories = data.todas_categorias || [];
                 const orderedCategories = allCategories.sort((a,b) => a.id - b.id);
                 setCategories(orderedCategories || []);
-              
+                
+                if (defaultCategoryId) {
+                    setSelectedCategory(defaultCategoryId);
+                }
             } catch (err) {
                 setError('Erro ao carregar categorias.');
             } finally {
@@ -41,9 +44,9 @@ function SelectCategory({ onChange }) {
     return (
         <select
             className={styles.select}
-            value={selectedCategory}
+            value={defaultCategoryId}
             onChange={handleChange}
-        >, 
+        > 
             
             {categories.map(cat => (
                 
