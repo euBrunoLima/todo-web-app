@@ -1,0 +1,119 @@
+.perfil_container{
+    height: 100dvh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.perfil_container > .conteudo{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+    height: 100dvh;
+    overflow-y: scroll;
+}
+.conteudo > .nav_top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.conteudo > .nav_top > span > img{
+    width: 23px;
+    height: 23px;
+    object-fit: cover;
+    padding: 4px;
+    box-sizing: content-box;
+    filter: contrast(1.5);
+    transform: scale(0.9);
+   
+}
+.conteudo > header{
+    padding: 1rem 0rem .9rem .4rem;
+}
+.conteudo > header h1{
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: #2E3A59;
+    font-weight: 650;
+    width: 100%;
+}
+
+.conteudo > header h1::after{
+    content: "";
+    display: block;
+    width: 20%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: #6c63ff;
+    margin-top: .4rem;
+}
+
+.conteudo .perfil{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    gap: 20px;
+    width: 90%;
+    margin: 1.5rem auto 0 auto;
+    padding: .9rem 0rem;
+    /* background: linear-gradient(120deg, #6c63ff 0%, #5a6cff 100%); */
+    background-color: #6c63ff;
+    border-radius: 25px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+.conteudo .perfil > img{
+    width: 70px;
+    height: 70px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+}
+.perfil > .texts{
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+ .perfil > .texts h2{
+    font-size: 1.2rem;
+    line-height: 1.2;
+    font-weight: 600;
+    
+}
+.editar_container{
+    margin: 1rem .4rem 1.4rem;
+}
+.editar_container hr{
+    margin: 1rem 0;
+}
+.editar_container > .toggle_button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.editar_container > .toggle_button h3{
+    font-size: 1rem;
+}
+.editar_container > .toggle_button button{
+    background-color: #6c63ff;
+    color: #fff;
+    padding: .5rem .7rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: .9rem;
+    cursor: pointer;
+
+}
+.conteudo > .exit_btn{
+    background-color: #6c63ff;
+    color: #fff;
+    padding: .6rem ;
+    width: 30%;
+    margin: auto auto 0 auto;
+    border-radius: 10px;
+    align-self: flex-start;
+
+}
