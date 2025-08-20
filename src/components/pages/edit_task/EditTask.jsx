@@ -11,6 +11,7 @@ import { AuthContext } from "../../../context/AuthContext.jsx";
 import { useContext, useState, useEffect, use } from 'react';
 import { useParams } from 'react-router-dom';
 import {getTaskById } from '../../../services/api/taskService.js';
+import { updateTask } from '../../../services/api/taskService.js';
 
 function EditTask() {
     const { id } = useParams();
@@ -23,7 +24,7 @@ function EditTask() {
         deadlineDate: '',
         deadlineTime: '',
         user_id: user.id,
-        category_id: '1'
+        category_id: ''
     });
     const [subTask, setSubTask] = useState([{
         title: '',
@@ -53,14 +54,26 @@ function EditTask() {
                     user_id: task.dados.user_id,
                     category_id: task.dados.category_id || ''
                 });
+
+
             } catch (error) {
                 console.error("Erro ao buscar tarefa:", error);
                 setMessage("Erro ao carregar tarefa.");
+
+                setTimeout(() => {
+                    setMessage('')
+                }, 2000);
+            }finally{
+                setLoading(false);
+                
             }
         };
-
         fetchTask();
     }, [id, token]);
+
+    useEffect(() => {
+        console.log("Dados da tarefa atualizados:", newTask);
+    }, [newTask]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -84,13 +97,32 @@ function EditTask() {
             setLoading(false);
             return;
         }
+        if(!newTask.title) {
+            setMessage("O título da tarefa é obrigatório.");
+            setLoading(false);
+            return;
+        }
+        if(!newTask.deadlineDate || !newTask.deadlineTime){
+            setNewTask(prev => ({
+                ...prev,
+                deadlineDate: null,
+                deadlineTime: null
+            }));
+        }
 
         try {
             const response = await updateTask(id, newTask, token);
             setMessage(response.mensagem || "Tarefa atualizada com sucesso!");
+            setTimeout(() => {
+                    setMessage('')
+            }, 2000);
         } catch (error) {
             console.error("Erro ao atualizar tarefa:", error);
             setMessage(error.message || "Erro ao atualizar tarefa.");
+
+             setTimeout(() => {
+                    setMessage('')
+            }, 2000);
         } finally {
             setLoading(false);
         }
@@ -107,7 +139,7 @@ function EditTask() {
                 </header>
 
                 <SelectCategory
-                    value={newTask.category_id || ''}
+                    defaultCategoryId={newTask.category_id}
                     onChange={(categoryId) => setNewTask(prev => ({ ...prev, category_id: categoryId }))}
                 />
 
@@ -135,7 +167,7 @@ function EditTask() {
                         text="Hora"
                         name="deadlineTime"
                         handleOnChange={handleChange}
-                        value={newTask.deadlineTime || 'digite a hora'}
+                        value={newTask.deadlineTime || ''}
                     />
 
                     <TextArea
