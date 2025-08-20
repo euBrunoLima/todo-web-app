@@ -1,7 +1,9 @@
-const API_URL = 'http://localhost/api/';
+const rede =  'localhost'
+const API_URL = `http://${rede}:3000/api/`;
+
 export async function fetchUserCategories(token) {
   try {
-    const response = await fetch(`${API_URL}categories`, {
+    const response = await fetch(`${API_URL}categories/`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`, // token no header
