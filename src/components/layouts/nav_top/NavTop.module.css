@@ -1,0 +1,15 @@
+ nav.nav_top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+nav.nav_top > span > img{
+    width: 23px;
+    height: 23px;
+    object-fit: cover;
+    padding: 4px;
+    box-sizing: content-box;
+    filter: contrast(1.5);
+    transform: scale(0.9);
+   
+}
