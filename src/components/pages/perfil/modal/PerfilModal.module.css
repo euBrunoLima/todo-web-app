@@ -1,0 +1,29 @@
+.modal_container{
+    position: absolute;
+    top: 5rem;
+    right: 1.2rem;
+    width: 180px;
+    padding: .9rem 1rem;
+    min-height: 100px;
+    background-color: #e8ebff;
+    border-radius: 16px;
+}
+.modal_container ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.modal_container ul li{
+    font-size: 1.1rem;
+    font-weight: 450;
+    color: #242424;
+    padding: .2rem .5rem;
+    border-radius: 6px;
+}
+.modal_container ul li:last-child{
+    margin-top: auto;
+}
+.modal_container ul li:hover{
+     background-color: #d6d4ff;
+}
+
