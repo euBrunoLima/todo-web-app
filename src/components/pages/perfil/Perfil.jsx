@@ -1,13 +1,11 @@
 import styles from './Perfil.module.css';
-import img1 from './imgs/back.png';
-import img2 from './imgs/dots.png';
+import img1 from '../../../imgs/back.png';
+import img2 from '../../../imgs/dots.png';
 import imgPerfil from '../../../imgs/perfil.png';
 import UpdateUserForm from './editForm/UpdateUserForm.jsx';
 import UpdatePassForm from './editForm/UpdatePassFom.jsx';
-
-
-
-
+import NavTop from '../../layouts/nav_top/NavTop.jsx';
+import PerfilModal from './modal/PerfilModal.jsx';
 
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -19,40 +17,45 @@ function Perfil() {
   const {user, token, logout} = useContext(AuthContext); 
 
   const [showForm, setShowForm] = useState(false);
-  const [showFormSenha, setFormSenha] = useState(false)
+  const [showFormSenha, setShowFormSenha] = useState(false);
+  const [showModal, setShowModal] = useState(false)
 
+  const navigateTo = (rota) =>{
+    navigate(`/${rota}`)
+  }
   
   const toggleEditPerfil = () =>{
     setShowForm(!showForm);
   }
   const toggleEditSenha = () =>{
-    setFormSenha(!showFormSenha);
+    setShowFormSenha(!showFormSenha);
   }
-   const navigateTo = (rota) =>{
-    navigate(`/${rota}`)
-  }
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  } 
   const fecharFormPerfil = () =>{
     setShowForm(!showForm)
   }
   const fecharFormPassword = () =>{
-    setFormSenha(!showFormSenha)
+    setShowFormSenha(!showFormSenha)
   }
+
+  useEffect(() =>{
+    console.log(showModal)
+  }, [showModal])
   
   return (
     <div className={styles.perfil_container}>
       <div className={styles.conteudo}>
-        <nav className={styles.nav_top}>
-          <span onClick={() => navigateTo("tasks")}> <img src={img1} alt="back" /> </span>
-          <span> <img src={img2} alt="three dots" /> </span>
-        </nav>
-        <header>
+        <NavTop Rota="tasks" onClick={toggleModal}/>
+        {/* <header>
           <h1>Perfil</h1>
-        </header>
-
+        </header> */}
+        {showModal && <PerfilModal/>}
         <div className={styles.perfil}>
           <img src={imgPerfil} alt="imgage perfil" />
           <div className={styles.texts}>
-            <h2>{user.nome.split(" ")[0] + " " +user.nome.split(" ")[1] }</h2>
+            <h2>{user.nome.split(" ")[0] + " " + (user.nome.split(" ")[1] || '') }</h2>
             <span>{user.email}</span>
           </div>
         </div>
