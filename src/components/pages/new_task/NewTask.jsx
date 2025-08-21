@@ -6,6 +6,7 @@ import TextArea from "../../forms/TextArea.jsx";
 import SelectCategory from "../../forms/SelectCategory.jsx";
 import Message from "../../layouts/message/Message.jsx";
 import Loading from "../../layouts/loading/Loading.jsx";
+import NavTop from '../../layouts/nav_top/NavTop.jsx';
 
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import { useContext, useState, useEffect } from 'react';
@@ -100,6 +101,7 @@ function NewTask() {
       {message && <Message type="success" msg={message}/>}
       {loading && <Loading/>}
       <div className={styles.conteudo}>
+        <NavTop Rota="tasks"/>
         <header>
           <h1>Nova tarefa</h1>
         </header>
