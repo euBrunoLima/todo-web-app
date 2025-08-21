@@ -1,32 +1,39 @@
-.newTask_container{
+.editTask_container{
     height: 100dvh;
     width: 100%;
     position: relative;
     overflow: hidden;  
 }
 
-.newTask_container > .conteudo{
+.editTask_container > .conteudo{
     display: flex;
     flex-direction: column;
     position: relative;
     padding: 2rem 1.2rem 1.5rem 1.2rem;
     overflow-y: scroll; 
-    gap: 2rem;
+    gap: 1.5rem;
+    height: 100%;
+
 }
 .conteudo > header{
     padding: .9rem 1rem .9rem .4rem;
     display: flex;
     flex-direction: column;
     gap: 2.2rem;
-    border-radius: 16px;
 }
-.conteudo > header h1,
-.conteudo > header h2{
+.conteudo > header h1{
     font-size: 1.5rem;
     line-height: 1.2;
     color: #2E3A59;
     font-weight: 650;
     width: 100%;
+}
+.conteudo > header h2{
+    font-size: 1.3rem;
+    font-weight: 450;
+    width: 95%;
+    line-height: 1.2;
+    color: #2E3A59;
 }
 
 .conteudo > header h1::after{
@@ -37,4 +44,7 @@
     border-radius: 2px;
     background-color: #6c63ff;
     margin-top: .4rem;
+}
+.editTask_container > .conteudo > form{
+    padding-bottom: 2rem;
 }

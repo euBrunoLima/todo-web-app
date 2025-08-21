@@ -6,6 +6,8 @@ import TextArea from "../../forms/TextArea.jsx";
 import SelectCategory from "../../forms/SelectCategory.jsx";
 import Message from "../../layouts/message/Message.jsx";
 import Loading from "../../layouts/loading/Loading.jsx";
+import NavTop from '../../layouts/nav_top/NavTop.jsx';
+
 
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import { useContext, useState, useEffect, use } from 'react';
@@ -129,10 +131,11 @@ function EditTask() {
     };
 
     return (
-        <div className={styles.newTask_container}>
+        <div className={styles.editTask_container}>
             {message && <Message type="success" msg={message} />}
-            {loading && <Loading />}
+            {loading && <Loading />}   
             <div className={styles.conteudo}>
+                <NavTop Rota="tasks" />
                 <header>
                     <h1>Editar tarefa</h1>
                     <h2>{newTask.title}</h2>
