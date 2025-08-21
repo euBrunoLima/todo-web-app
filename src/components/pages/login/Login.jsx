@@ -38,8 +38,6 @@ function Login(){
             setMessage(response.mensagem);
             login_context(response.token, response.usuario); // usar a função do context para salvar o token e dados do user
 
-            //colocar uma futura img/svg de carregamento por causa do delay
-
             setTimeout(() => {
                 clear();
                 setMessage('')
@@ -80,6 +78,7 @@ function Login(){
                         placeholder="Digite seu email"
                         handleOnChange={handleChange}
                         value={login.email ? login.email : ''}
+                        required = {true}
                     />
                     <Input
                         type="password"
@@ -88,6 +87,7 @@ function Login(){
                         placeholder="Digite sua senha"
                         handleOnChange={handleChange}
                         value={login.password ? login.password : ''}
+                        required = {true}
                     />
                     <Link to="/forgot_password">Esqueceu a senha?</Link>
                 </div>
