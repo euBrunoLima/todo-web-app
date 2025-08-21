@@ -9,26 +9,15 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 1.2rem 1.2rem 1.5rem 1.2rem;
-    height: 100dvh;
+    padding: 2rem 1.2rem 1.5rem 1.2rem;
+    height: 100%;
     overflow-y: scroll;
+    gap: 1.5rem;
+    /* border: 1px solid; */
 }
-.conteudo > .nav_top{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-.conteudo > .nav_top > span > img{
-    width: 23px;
-    height: 23px;
-    object-fit: cover;
-    padding: 4px;
-    box-sizing: content-box;
-    filter: contrast(1.5);
-    transform: scale(0.9);
-   
-}
-.conteudo > header{
+
+/* .conteudo > header{
+    margin: 1rem  0 1.5rem 0;
     padding: 1rem 0rem .9rem .4rem;
 }
 .conteudo > header h1{
@@ -47,7 +36,7 @@
     border-radius: 2px;
     background-color: #6c63ff;
     margin-top: .4rem;
-}
+} */
 
 .conteudo .perfil{
     display: flex;
@@ -56,14 +45,12 @@
     align-items: center ;
     gap: 20px;
     width: 90%;
-    margin: 1.5rem auto 0 auto;
+    margin: 1.5rem auto 1.5rem auto;
     padding: .9rem 0rem;
-    /* background: linear-gradient(120deg, #6c63ff 0%, #5a6cff 100%); */
     background-color: #6c63ff;
     border-radius: 25px;
     text-align: center;
     color: #fff;
-    margin-bottom: 2rem;
 }
 .conteudo .perfil > img{
     width: 70px;
@@ -74,13 +61,18 @@
 .perfil > .texts{
     display: flex;
     flex-direction: column;
-    gap: .3rem;
+    gap: .4rem;
 }
  .perfil > .texts h2{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     line-height: 1.2;
-    font-weight: 600;
-    
+    font-weight: 450;
+}
+.perfil > .texts > span{
+    font-size: .9rem;
+    line-height: 1.2;
+    letter-spacing: .5px;
+    font-weight: 300;
 }
 .editar_container{
     margin: 1rem .4rem 1.4rem;
