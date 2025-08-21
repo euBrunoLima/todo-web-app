@@ -114,3 +114,32 @@ export async function updatePassword(id, userData, token) {
           throw error
       }
 }
+export async function deleteUser(id, userData, token) {
+    try{
+        const response = await fetch(`${API_URL}user/${id}`,{
+            method: 'DELETE',
+            headers:{
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+
+        let data;
+
+        try {
+            data = await response.json();
+        } catch (jsonError) {
+            data = null;   
+        }
+
+        if (!response.ok) {
+            throw new Error(data?.mensagem || 'Conta deletada com sucesso');
+        }
+        return data;
+
+    }catch(error){
+        throw error
+    }
+    
+}
