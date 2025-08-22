@@ -1,0 +1,44 @@
+.delete_task_container{
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.delete_task_box {
+    width: 90%;
+    max-width: 400px;
+    padding: 1rem 1.2rem;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+    
+}
+.delete_task_box  > h1{
+    font-size: 1.1rem;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.delete_task_box > .buttons{
+    display: flex;
+    gap: 16px;
+    align-self: flex-end;
+}
+.delete_task_box > .buttons > button{
+    font-weight: 650;
+}
+.delete_task_box > .buttons > button:last-child{
+    color: #6861FC;
+}
+.delete_task_box > .buttons > button:first-child{
+    opacity: 0.5;
+}
+
