@@ -2,11 +2,11 @@
     position: absolute;
     top: 5rem;
     right: 1.2rem;
-    width: 180px;
-    padding: .9rem 1rem;
+    min-width: 180px;
+    padding: .9rem .4rem;
     min-height: 100px;
     background-color: #e8ebff;
-    border-radius: 16px;
+    border-radius: 12px;
 }
 .modal_container ul{
     display: flex;
@@ -19,6 +19,7 @@
     color: #242424;
     padding: .2rem .5rem;
     border-radius: 6px;
+    font-size: .9rem;
 }
 .modal_container ul li:last-child{
     margin-top: auto;
@@ -27,3 +28,6 @@
      background-color: #d6d4ff;
 }
 
+.hidden_lista{
+    display: none;
+}
