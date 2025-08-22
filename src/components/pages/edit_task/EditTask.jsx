@@ -7,11 +7,12 @@ import SelectCategory from "../../forms/SelectCategory.jsx";
 import Message from "../../layouts/message/Message.jsx";
 import Loading from "../../layouts/loading/Loading.jsx";
 import NavTop from '../../layouts/nav_top/NavTop.jsx';
+import EditModal from './Modal/EditModal.jsx';
 
 
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import { useContext, useState, useEffect, use } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {getTaskById } from '../../../services/api/taskService.js';
 import { updateTask } from '../../../services/api/taskService.js';
 
@@ -19,6 +20,7 @@ function EditTask() {
     const { id } = useParams();
     const { user, token } = useContext(AuthContext);
 
+    const navigate = useNavigate()
 
     const [newTask, setNewTask] = useState({
         title: '',
@@ -35,7 +37,12 @@ function EditTask() {
 
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const [shoModal, setShowModal] = useState(false)
 
+    const toggleModal = () =>{
+        setShowModal(!shoModal)
+        console.log(shoModal)
+    }
     // Busca a tarefa ao abrir a página
     useEffect(() => {
         const fetchTask = async () => {
@@ -64,7 +71,7 @@ function EditTask() {
 
                 setTimeout(() => {
                     setMessage('')
-                }, 2000);
+                }, 1500);
             }finally{
                 setLoading(false);
                 
@@ -116,14 +123,16 @@ function EditTask() {
             const response = await updateTask(id, newTask, token);
             setMessage(response.mensagem || "Tarefa atualizada com sucesso!");
             setTimeout(() => {
-                    setMessage('')
+                setLoading(false)
+                setMessage('')
+                navigate("/tasks")
             }, 2000);
         } catch (error) {
             console.error("Erro ao atualizar tarefa:", error);
             setMessage(error.message || "Erro ao atualizar tarefa.");
 
              setTimeout(() => {
-                    setMessage('')
+                setMessage('')
             }, 2000);
         } finally {
             setLoading(false);
@@ -135,7 +144,8 @@ function EditTask() {
             {message && <Message type="success" msg={message} />}
             {loading && <Loading />}   
             <div className={styles.conteudo}>
-                <NavTop Rota="tasks" />
+                <NavTop Rota="tasks" onClick={toggleModal}/>
+                {shoModal && <EditModal/>}
                 <header>
                     <h1>Editar tarefa</h1>
                     <h2>{newTask.title}</h2>
