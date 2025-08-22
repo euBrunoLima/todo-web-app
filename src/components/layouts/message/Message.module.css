@@ -15,6 +15,7 @@
 
 .message {
     width: 90%;
+    max-width: 450px;
     padding: 0.7rem;
     border-radius: 10px;
     text-align: center;
