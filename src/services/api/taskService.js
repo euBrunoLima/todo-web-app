@@ -109,4 +109,27 @@ export async function updateTask(id, taskData, token) {
     throw error; // propaga o erro para o componente tratar
   }
 }
+export async function deleteTask(id, token) {
+  try {
+    const response = await fetch(`${API_URL}tasks/delete/${id}`,{
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`, // token no header
+        'Content-Type': 'application/json'
+      }
+    })
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      data = null;
+    }
+    if (!response.ok) {
+      throw new Error(data?.mensagem || 'Erro ao deletar tarefa');
+    }
+    return data; 
+  } catch (error) {
+      throw error
+  }
+}
 
