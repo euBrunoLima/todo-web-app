@@ -80,7 +80,7 @@ function ModalDelete({ isOpen, onClose, onDelete }) {
                 <form onSubmit={handleSubmit}>
                     <input
                         type="password"
-                        placeholder="Enter your password"
+                        placeholder="Digite sua senha"
                         value={password.senha ? password.senha : ''}
                         name="senha"
                         onChange={handleChange}
