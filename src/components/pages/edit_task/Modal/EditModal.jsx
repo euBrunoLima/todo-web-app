@@ -15,6 +15,7 @@ function EditModal(){
     //     setConcluido(!concluido)
     // }
     const handleChangeStatus = () =>{
+        console.log("teste")
         
     }
 

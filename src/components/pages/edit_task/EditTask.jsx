@@ -8,6 +8,7 @@ import Message from "../../layouts/message/Message.jsx";
 import Loading from "../../layouts/loading/Loading.jsx";
 import NavTop from '../../layouts/nav_top/NavTop.jsx';
 import EditModal from './Modal/EditModal.jsx';
+import Subtask from '../../task_layout/subtask/Subtask.jsx';
 
 
 import { AuthContext } from "../../../context/AuthContext.jsx";
@@ -15,6 +16,9 @@ import { useContext, useState, useEffect, use } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {getTaskById } from '../../../services/api/taskService.js';
 import { updateTask } from '../../../services/api/taskService.js';
+import { getAllByTask } from '../../../services/api/subTaskServer.js';
+
+
 
 function EditTask() {
     const { id } = useParams();
@@ -30,10 +34,7 @@ function EditTask() {
         user_id: user.id,
         category_id: ''
     });
-    const [subTask, setSubTask] = useState([{
-        title: '',
-        task_id: id,
-    }]);
+    const [subTasks, setSubTask] = useState([]);
 
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -79,7 +80,27 @@ function EditTask() {
         };
         fetchTask();
     }, [id, token]);
+    const response = async () => {
+            if (!id || !token){
+                return;
+            }
 
+            try{
+                const subTask = await getAllByTask(id, token)
+                console.log(subTask.mensagem || "sub-tarfas encontradas")
+                console.log(subTask)
+            
+                setSubTask(subTask.dados)
+                
+
+            }catch(error){
+                console.error("Erro ao buscar sub-tarefas:", error);
+            }
+    }
+    useEffect(() =>{
+        response()
+    }, [id, token])
+    
     useEffect(() => {
         console.log("Dados da tarefa atualizados:", newTask);
     }, [newTask]);
@@ -92,8 +113,7 @@ function EditTask() {
         }));
     };
     const addSubtask = () => {
-    // adiciona uma subtask "vazia" para edição
-        setSubTask([...setSubTask, { title: "", task_id: taskId }]);
+        setSubTask([...subTasks, {id: '', title: '', status: false}]);
     };
 
 
@@ -139,6 +159,7 @@ function EditTask() {
         }
     };
 
+  
     return (
         <div className={styles.editTask_container}>
             {message && <Message type="success" msg={message} />}
@@ -150,12 +171,36 @@ function EditTask() {
                     <h1>Editar tarefa</h1>
                     <h2>{newTask.title}</h2>
                 </header>
-
+                {/* <hr /> */}
                 <SelectCategory
                     defaultCategoryId={newTask.category_id}
                     onChange={(categoryId) => setNewTask(prev => ({ ...prev, category_id: categoryId }))}
                 />
 
+                <div className={styles.sub_task_container}>
+                    <header className={styles.subtask_header}>
+                        <h2>Subtarefas</h2>
+                        <button onClick={() => addSubtask()}>Adicionar</button>
+                    </header>
+
+                    <div className={styles.cards_container}>
+                        {subTasks.length > 0 ?
+                            subTasks.map(subtask =>(
+                                <Subtask
+                                    key={subtask.id}
+                                    id={subtask.id}
+                                    title={subtask.title}
+                                    status={subtask.status}
+                                    reLoad={response}
+                                    onCreate={addSubtask}
+                                />
+                            ))
+                            :
+                            <p>nehunha sub-tarefa</p>
+                        }
+                    </div>
+                </div>
+                <hr/>
                 <form onSubmit={handleSubmit}>
                     <Input
                         type="text"
