@@ -1,0 +1,62 @@
+.e-calendar {
+    background-color: #6c64ff18 !important;
+    padding: 0px 5px 35px 0px !important;
+    position: relative  !important;
+    border: none !important;
+}
+.e-footer-container {
+    background-color: #6c64ff !important;
+    align-items: center !important;
+    position: absolute !important;
+    padding: 1px !important;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+   
+}
+.e-footer-container button{
+    color: #fff !important;
+    font-weight: 500 !important;
+}
+.e-calendar .e-content td.e-today.e-selected:hover span.e-day, .e-calendar .e-content td.e-selected:hover span.e-day, .e-calendar .e-content td.e-selected.e-focused-date span.e-day {
+    background: #6b64ff !important;
+    color: #fff !important;
+}
+
+.e-calendar .e-content td.e-selected span.e-day {
+    background-color: #6b64ff !important;
+}
+
+.e-calendar .e-content td.e-today span.e-day, .e-calendar .e-content td.e-focused-date.e-today span.e-day {
+    border: 1px solid #6b64ff !important;
+    color: #fff !important;
+    background-color: #6b64ff !important;
+}
+
+.e-calendar .e-content span.e-day {
+    font-size: .9rem !important;
+    font-weight: 500 !important;  
+}
+
+.e-calendar .e-content.e-year td > span.e-day, .e-calendar .e-content.e-decade td > span.e-day {
+    border-radius: 50% !important;
+}
+
+
+
+.e-calendar .e-header .e-prev .e-icons::before {
+  content: '‹' !important;
+  font-family: sans-serif !important;
+  font-size: 25px;
+  font-weight: bold;
+  color: #373381; 
+}
+
+.e-calendar .e-header .e-next .e-icons::before {
+  content: '›' !important;
+  font-family: sans-serif !important;
+  font-size: 25px;
+  font-weight: bold;
+  color: #373381; 
+}
