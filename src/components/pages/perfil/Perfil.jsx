@@ -87,10 +87,10 @@ function Perfil() {
           <hr />
         </div>
         
-        <button onClick={() => logout()} className={styles.exit_btn}>
+        {/* <button onClick={() => logout()} className={styles.exit_btn}>
           
           Sair
-        </button>
+        </button> */}
       </div>
     </div>
   );
