@@ -1,0 +1,31 @@
+.card_container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(234, 234, 243, 0.432);
+    width: 100%;
+    border-radius: 10px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.card_container > .faixa_lateral{
+    height: 100%;
+    width: 10px;
+    background-color: blue;
+}
+.card_container > .texts > .prazo {
+    display: flex;
+    gap: 5px;
+    font-size: 0.8rem;
+    color: rgba(10, 9, 24, 0.745);
+
+}
+
+.card_container > .texts > h3 {
+    font-size: 1rem;
+    margin-bottom: 3px;
+    font-weight: 500;
+    color: rgba(10, 9, 24, 0.95);
+}
+
