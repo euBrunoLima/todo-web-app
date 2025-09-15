@@ -1,51 +1,69 @@
 .side_container {
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 70%;
-    height: 100dvh;
-    background-color: rgb(247, 247, 253);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    pointer-events: none;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 70%;
+  height: 100dvh;
+  background-color: #f7f7fd;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .side_container.active {
-    transform: translateX(0%);
-    pointer-events: auto;
-
+  transform: translateX(0%);
+  pointer-events: auto;
 }
 
-.side_container > .img_box{
-    width: 100%;
-    height: fit-content;
-    overflow: hidden;
-    /* background-color: aliceblue; */
-}
-.side_container > .img_box > img{
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+.side_container > .img_box {
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
 }
 
-.side_container > .menu_container{
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    padding: 1.2rem .5rem 1rem 1.2rem;
-    color: rgba(0, 0, 0, 0.9);
-    font-weight: 450;
-    font-size: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.side_container > .img_box > img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
-.menu_container ul{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.side_container > .menu_container {
+  width: 100%;
+  height: 100%;
+  padding:1.5rem 1rem 11rem 1rem;;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 500;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: scroll;
 }
 
+.menu_container ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu_container li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.menu_container li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.icon {
+  font-size: 1.2rem;
+  color: #4a4a9e;
+}
