@@ -48,7 +48,7 @@ function TaskCard({ id, name, initialStatus, deadlineDate, deadlineTime, onStatu
     }
 
     return (
-        <div className={styles.card_container}>
+        <div className={`${styles.card_container} ${status ? styles.completed : ''}`}>
             <div className={styles.check_wrapper}>
                 <input
                     type="checkbox"
