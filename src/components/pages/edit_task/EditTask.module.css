@@ -15,6 +15,15 @@
     height: 100%;
 
 }
+
+.editTask_container.completed::before{
+    content: '';
+    position: absolute;
+    inset: 0 0 0 0;
+    background-color: #d3d3d3;
+    opacity: 0.7;
+    z-index: 1;
+}
 .conteudo > header{
     display: flex;
     flex-direction: column;
