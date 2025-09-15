@@ -12,12 +12,12 @@
     width: 90%;
     max-width: 400px;
     padding: 1rem 1.2rem;
-    height: 100px;
+    min-height: 100px;
     background-color: #fff;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
     justify-content: space-between;
     
 }
@@ -25,6 +25,7 @@
     font-size: 1.1rem;
     line-height: 1.2;
     font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 .delete_task_box > .buttons{
