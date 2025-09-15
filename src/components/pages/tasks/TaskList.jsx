@@ -11,7 +11,7 @@ import WithoutTask from "../../task_layout/without_task/WithoutTask.jsx";
 import AddTask from "../../task_layout/addTask/AddTask.jsx";
 
 import { fetchUserCategories } from "../../../services/api/categoryServer.js";
-import { fetchUserTasks } from "../../../services/api/taskService.js";
+import { fetchUserTasks, updateTaskStatus } from "../../../services/api/taskService.js";
 
 
 
@@ -71,6 +71,16 @@ function TaskList() {
     }
   };
 
+  const handleStatusChange = async (id, newStatus) => {
+    try{
+      const data  = await updateTaskStatus(id, newStatus, token);
+      console.log(`${data.mensagem} - Tarefa ID: ${id}, Novo Status: ${newStatus}`);
+    }catch(error){
+      console.error("Erro ao atualizar status da tarefa:", error);
+    }
+  
+  };
+
    
 
   return (
@@ -112,12 +122,8 @@ function TaskList() {
                   initialStatus={task.status}
                   deadlineDate={task.deadlineDate}
                   deadlineTime={task.deadlineTime}
-                  onStatusChange={(id, newStatus) => {
-                    console.log(`Status da tarefa ${id} alterado para: ${newStatus}`,
-                    console.log(task.id, task.title, newStatus, task.deadlineDate, task.deadlineTime)
-                    );
-                    // Aqui você pode chamar uma função para atualizar o status da tarefa no servidor, se necessário
-                  }}  
+                  onStatusChange={handleStatusChange}
+                    
                 />
                 
               ))
