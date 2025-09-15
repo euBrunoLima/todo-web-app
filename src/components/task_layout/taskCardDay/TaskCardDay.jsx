@@ -49,7 +49,7 @@ function TaskCardDay({ id, name, initialStatus, deadlineDate, deadlineTime, onSt
     }
 
     return (
-        <div className={styles.card_container}>
+        <div className={`${styles.card_container} ${status ? styles.completed : ''}`}>
             <div className={styles.faixa_lateral}>
             </div>
 
