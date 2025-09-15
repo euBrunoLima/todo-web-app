@@ -13,8 +13,8 @@ import Subtask from '../../task_layout/subtask/Subtask.jsx';
 
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import { useContext, useState, useEffect, use } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import {getTaskById } from '../../../services/api/taskService.js';
+import { data, useNavigate, useParams } from 'react-router-dom';
+import {getTaskById, updateTaskStatus } from '../../../services/api/taskService.js';
 import { updateTask } from '../../../services/api/taskService.js';
 import { getAllByTask } from '../../../services/api/subTaskServer.js';
 
@@ -23,26 +23,28 @@ import { getAllByTask } from '../../../services/api/subTaskServer.js';
 function EditTask() {
     const { id } = useParams();
     const { user, token } = useContext(AuthContext);
+    const [status, setStatus] = useState(false)
 
     const navigate = useNavigate()
 
     const [newTask, setNewTask] = useState({
+        id: id || '',
         title: '',
         description: '',
         deadlineDate: '',
         deadlineTime: '',
         user_id: user.id,
-        category_id: ''
+        category_id: '',
+        status: 0
     });
     const [subTasks, setSubTask] = useState([]);
 
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
-    const [shoModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     const toggleModal = () =>{
-        setShowModal(!shoModal)
-        console.log(shoModal)
+        setShowModal(!showModal)
     }
     // Busca a tarefa ao abrir a página
     useEffect(() => {
@@ -57,13 +59,16 @@ function EditTask() {
                 console.log("Tarefa encontrada:", task);
 
                 setNewTask({
+                    ...newTask,
                     title: task.dados.title || '',
                     description: task.dados.description || '',
                     deadlineDate: task.dados.deadlineDate ? task.dados.deadlineDate.split('T')[0] : '',
                     deadlineTime: task.dados.deadlineTime || '',
                     user_id: task.dados.user_id,
-                    category_id: task.dados.category_id || ''
+                    category_id: task.dados.category_id || '',
+                    status: task.dados.status || 0
                 });
+                setStatus(task.dados.status || 0)
 
 
             } catch (error) {
@@ -100,11 +105,9 @@ function EditTask() {
     useEffect(() =>{
         response()
     }, [id, token])
-    
-    useEffect(() => {
-        console.log("Dados da tarefa atualizados:", newTask);
-    }, [newTask]);
-
+    useEffect(() =>{
+        console.log(newTask)       
+    },[newTask])
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewTask(prev => ({
@@ -159,14 +162,30 @@ function EditTask() {
         }
     };
 
+    const handleStatus = async (taskId, newStatus) => {
+        try{
+            const data = await updateTaskStatus(taskId, newStatus, token)
+            console.log(data.mensagem || "Status da tarefa atualizado")
+            setNewTask(prev => ({
+                ...prev,
+                status: newStatus ? 1 : 0
+            }))
+            setStatus(newStatus ? 1 : 0)
+        }catch(error){
+            console.error("Erro ao atualizar status da tarefa:", error);
+        }finally{
+            toggleModal()
+        }
+    }
+
   
     return (
-        <div className={styles.editTask_container}>
-            {message && <Message type="success" msg={message} />}
+        <div className={`${styles.editTask_container} ${status ? styles.completed : ''}`}>
+            {message && <Message msg={message} />}
             {loading && <Loading />}   
             <div className={styles.conteudo}>
                 <NavTop Rota="tasks" onClick={toggleModal}/>
-                {shoModal && <EditModal/>}
+                {showModal && <EditModal task={newTask} onStatusChange={handleStatus}/>}
                 <header>
                     <h1>Editar tarefa</h1>
                     <h2>{newTask.title}</h2>
