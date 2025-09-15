@@ -1,21 +1,19 @@
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../../../context/AuthContext';
+import { useState } from 'react';
 import styles from './../../perfil/modal/PerfilModal.module.css'; //Estilos de outro componente
 import DeleteTaskModal from '../Modal/DeleteTaskModal.jsx'
 
-function EditModal(){
+function EditModal({task, onStatusChange}){
 
     const [showModal, setShowModal] = useState(false);
-    // const [concluido, setConcluido] = useState(false)
-
+    
     const toggleModal = () =>{
         setShowModal(!showModal)
     }
-    // const toggleConcluido = () =>{
-    //     setConcluido(!concluido)
-    // }
+ 
     const handleChangeStatus = () =>{
-        console.log("teste")
+        if(onStatusChange){
+            onStatusChange(task.id, !task.status)
+        }
         
     }
 
@@ -24,7 +22,7 @@ function EditModal(){
 
             {showModal && <DeleteTaskModal onClose={toggleModal} />}
             <ul className={`${showModal ? styles.hidden_lista : ''}`}>   
-                <li onClick={() => handleChangeStatus()}>Marcar como concluido</li>
+                <li onClick={() => handleChangeStatus()}>{`${task.status ? "Desmacar concluido" : "Marcar concluido"}`}</li>
                 <li>Imprimir</li>
                 <li>Compartilhar</li>
                 <li onClick={() => toggleModal()}>Deletar</li>
