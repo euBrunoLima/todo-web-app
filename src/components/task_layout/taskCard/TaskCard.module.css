@@ -7,6 +7,11 @@
     padding: 0.6rem 0.8rem;
     border-radius: 12px;
 }
+.completed {
+    background-color: #d3d3d3;
+    text-decoration: line-through; 
+    opacity: 0.8; 
+}
 
 .check_wrapper {
     position: relative;

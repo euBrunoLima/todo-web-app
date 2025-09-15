@@ -8,6 +8,11 @@
     height: 60px;
     overflow: hidden;
 }
+.completed {
+    background-color: #d3d3d3;
+    text-decoration: line-through; 
+    opacity: 0.8; 
+}
 
 .card_container > .faixa_lateral{
     height: 100%;
