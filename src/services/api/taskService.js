@@ -132,4 +132,30 @@ export async function deleteTask(id, token) {
       throw error
   }
 }
+export async function updateTaskStatus(id, newStatus, token) {
+  try {
+    const response = await fetch(`${API_URL}tasks/status/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ status: newStatus }) // envia o novo status
+    });
 
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      data = null;
+    }
+
+    if (!response.ok) {
+      throw new Error(data?.mensagem || 'Erro ao atualizar status da tarefa');
+    }
+
+    return data; // aqui você pode receber o status atualizado e a mensagem
+  } catch (error) {
+    throw error;
+  }
+}
