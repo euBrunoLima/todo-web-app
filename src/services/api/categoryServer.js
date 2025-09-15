@@ -28,4 +28,32 @@ export async function fetchUserCategories(token) {
     throw error;  // propaga o erro para o componente tratar
   }
 }
+export async function createCategory(token, name) {
+  try {
+    const response = await fetch(`${API_URL}categories`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`, 
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name }) // envia só o campo que a API espera
+    });
+
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      data = null;
+    }
+
+    if (!response.ok) {
+      throw new Error(data?.mensagem || 'Erro ao criar categoria');
+    }
+
+    return data; // ex: { mensagem: 'Categoria criada com sucesso.', name: '...' }
+
+  } catch (error) {
+    throw error;
+  }
+}
 
