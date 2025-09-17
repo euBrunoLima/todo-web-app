@@ -7,7 +7,7 @@ import { AuthContext } from '../../../../context/AuthContext.jsx';
 import Message from '../../../layouts/message/Message.jsx';
 import Loading from '../../../layouts/loading/Loading.jsx';
 
-function CreateModal({ onClose }) {
+function CreateModal({ onClose, onCreate }) {
     const {token} = useContext(AuthContext);
     
     const [categoria, setCategoria] = useState({ name: '' });
@@ -32,13 +32,15 @@ function CreateModal({ onClose }) {
       setMessage(resposta.mensagem || "Categoria criada com sucesso!");
       setTimeout(() => {
         setMessage('');
-      }, 2000);
+        setTimeout(() => {setCategoria({ name: '' })}, 300);
+      }, 1200);
+      if (onCreate) onCreate();
     } catch (error) {
       setMessage(resposta.mensagem || "Erro ao criar categoria.");
       console.error("Erro ao criar categoria:", error);
       setTimeout(() => {
         setMessage('');
-      }, 2000);
+      }, 1500);
     } finally {
       setLoading(false);
     }
